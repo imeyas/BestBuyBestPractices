@@ -19,7 +19,8 @@ namespace BestBuyBestPractices
         }
         public void CreateProduct(string newProductName, decimal newProductPrice, int newProductCategoryID)
         {
-            _connection.Execute("INSERT INTO PRODUCTS (Name, Price, CategoryID) VALUES (@Name, @Price, @CategoryID);", new { Name = newProductName, Price = newProductPrice, CategoryID = newProductCategoryID });
+            _connection.Execute("INSERT INTO PRODUCTS (Name, Price, CategoryID) VALUES (@Name, @Price, @CategoryID);", 
+                new { Name = newProductName, Price = newProductPrice, CategoryID = newProductCategoryID });
         }
 
         public IEnumerable<Product> GetAllProducts()
@@ -27,9 +28,16 @@ namespace BestBuyBestPractices
             return _connection.Query<Product>("SELECT * FROM Products;").ToList();
         }
 
-        public void UpdateProduct(decimal newHoodiePrice)
+        public void UpdateProduct(double newProductPrice, int newProductID)
         {
-            _connection.Execute("UPDATE PRODUCTS SET Price = @Price WHERE ProductID = @prodID;");
+            _connection.Execute("UPDATE Products SET Price = @Price WHERE ProductID = @ProdID;", 
+                new {Price = newProductPrice, ProdID = newProductID });
+        }
+
+        public void DeleteProduct(int deleteProductCategoryID)
+        {
+            _connection.Execute("DELETE FROM PRODUCTS WHERE ProductID = @ProdID;",
+                new { ProdID = deleteProductCategoryID });
         }
     }
 }
