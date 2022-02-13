@@ -30,11 +30,11 @@ namespace BestBuyBestPractices
 
             var departments = repo.GetAllDepartments();
 
-            //Console.WriteLine($"List of All Departments");
-            //foreach (var dept in departments)
-            //{
-            //    Console.WriteLine($"\n{dept.Name}\n");
-            //}
+            Console.WriteLine($"List of All Departments");
+            foreach (var dept in departments)
+            {
+                Console.WriteLine($"\n{dept.Name}\n");
+            }
 
             ////Below follows a notated Implementation of Product Class in Program's Main to create a new product (CreateProduct method)
             ////and get all products (GetAllProducts method)
@@ -42,32 +42,32 @@ namespace BestBuyBestPractices
             var productRepo = new DapperProductRepository(conn); //creates new object of DapperProductRepository
 
             ////Take user input for new prodct's name
-            //Console.WriteLine($"\nType new Product's name.\n");
-            //var firstNewName = Console.ReadLine();
+            Console.WriteLine($"\nType new Product's name.\n");
+            var firstNewName = Console.ReadLine();
 
             ////Take user input for new product's price utilizing TryParse() method to convert user string input to double data type,
             ////while anticipating user's discretion to be on the safe side
-            //Console.WriteLine($"\nType new Product's price.\n");
-            //decimal userFirstNewPrice;
-            //var firstNewPrice = decimal.TryParse(Console.ReadLine(), out userFirstNewPrice);
+            Console.WriteLine($"\nType new Product's price.\n");
+            decimal userFirstNewPrice;
+            var firstNewPrice = decimal.TryParse(Console.ReadLine(), out userFirstNewPrice);
 
             ////Take user input for new product's category ID utilizing TryParse() method to convert user string input to int data type,
             ////while anticipating user's discretion to be on the safe side
-            //Console.WriteLine($"\nType new Product's category ID.\n");
-            //int userFirstNewID;
-            //var firstNewID = int.TryParse(Console.ReadLine(), out userFirstNewID);
+            Console.WriteLine($"\nType new Product's category ID.\n");
+            int userFirstNewID;
+            var firstNewID = int.TryParse(Console.ReadLine(), out userFirstNewID);
 
-            //productRepo.CreateProduct(firstNewName, userFirstNewPrice, userFirstNewID); //Caling CreateProduct method and passing paramters
+            productRepo.CreateProduct(firstNewName, userFirstNewPrice, userFirstNewID); //Caling CreateProduct method and passing paramters
 
             ////Creates a new variable object to hold GetAllProducts() method call
-            //var products = productRepo.GetAllProducts();
+            var products = productRepo.GetAllProducts();
 
             ////Uses a foreach loop to iterate through and return/display all products from our GetAllProducts() method call
-            //Console.WriteLine($"\nHERE'S A LIST OF ALL PRODUCTS:");
-            //foreach (var product in products)
-            //{
-            //    Console.WriteLine($"\n{product.Name}, {product.Price}, {product.CategoryID}\n");
-            //}
+            Console.WriteLine($"\nHERE'S A LIST OF ALL PRODUCTS:");
+            foreach (var product in products)
+            {
+                Console.WriteLine($"\n{product.Name}, {product.Price}, {product.CategoryID}\n");
+            }
 
             //BONUS: Updating a product using UpdateProduct() method based on primary key (PK) ProductID
 
@@ -82,7 +82,7 @@ namespace BestBuyBestPractices
             var updateThisPrice = double.TryParse(Console.ReadLine(), out userUpdatedPrice);
 
             productRepo.UpdateProduct(userUpdatedPrice, userUpdateThisID); //Calling the UpdateProduct() method passing it user input for product ID and price
-            /*products = productRepo.GetAllProducts();*/ //Calling GetAllProducts method before printing products to include the updated product
+            products = productRepo.GetAllProducts(); //Calling GetAllProducts method before printing products to include the updated product
 
             var updatedProdList = productRepo.GetAllProducts();
             //Printing the updated products table on-screen for the user
@@ -95,19 +95,19 @@ namespace BestBuyBestPractices
             ////EXTRA BONUS: Deleting a product using DeleteProduct() method based on primary key (PK) ProductID
 
             ////Taking user input for the Product ID being deleted
-            //Console.WriteLine($"\nType the Product ID being deleted.\n");
-            //int userDeleteThisID;
-            //var deleteThisProduct = int.TryParse(Console.ReadLine(), out userDeleteThisID);
+            Console.WriteLine($"\nType the Product ID being deleted.\n");
+            int userDeleteThisID;
+            var deleteThisProduct = int.TryParse(Console.ReadLine(), out userDeleteThisID);
 
-            //productRepo.DeleteProduct(userDeleteThisID); //Calling the DeleteProduct() method to delete the Product ID inputted by user
-            //products = productRepo.GetAllProducts(); //Calling GetAllProducts method before printing products to include the updated product
+            productRepo.DeleteProduct(userDeleteThisID); //Calling the DeleteProduct() method to delete the Product ID inputted by user
+            products = productRepo.GetAllProducts(); //Calling GetAllProducts method before printing products to include the updated product
 
             ////Printing the products table on-screen, excluding the now deleted product
             //Console.WriteLine($"\nHERE'S AN UPDATED LIST OF ALL PRODUCTS:");
-            //foreach (var product in products)
-            //{
-            //    Console.WriteLine($"\n{product.Name}, {product.Price}, {product.CategoryID}\n");
-            //}
+            foreach (var product in products)
+            {
+                Console.WriteLine($"\n{product.Name}, {product.Price}, {product.CategoryID}\n");
+            }
 
         }
     }
